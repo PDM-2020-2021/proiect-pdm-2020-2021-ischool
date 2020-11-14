@@ -1,0 +1,12 @@
+{
+  "name": "iSchool",
+  "displayName": "iSchool",
+  "expo": {
+    "name": "iSchool",
+    "slug": "iSchool",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
