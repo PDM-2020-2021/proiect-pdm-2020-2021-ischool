@@ -5,9 +5,13 @@ import { createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer} from 'react-navigation';
 import Home from './Home';
 import SignUp from './SignUp';
+import Login from './Login';
 const AppNavigator = createStackNavigator({
     Home: {
         screen: Home
+    },
+    Login: {
+        screen: Login
     },
     SignUp: {
         screen: SignUp
