@@ -28,7 +28,7 @@ export default class SignUp extends React.Component{
         };
     render()
     {
-        const {navigate} = this.props.navigation;
+         const {navigate} = this.props.navigation;
         return(
         <View>
         <Image
@@ -125,7 +125,7 @@ export default class SignUp extends React.Component{
                 </View>
                 <View>
                   <TouchableOpacity
-                    //onPress={() => navigate('Succes')}
+                    onPress={() => navigate('Succes')}
                     style ={styles.buttonSignUp}
                   >
                   <Text style={{fontSize: 20, textAlign: "center"}}>SignUp</Text>
