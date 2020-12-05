@@ -9,6 +9,13 @@ import Login from './Login';
 import Real from './Real';
 import Uman from './Uman';
 import Succes from './Succes';
+import {decode, encode} from'base-64';
+if (!global.btoa) {
+  global.btoa = encode;
+}
+if (!global.atob) {
+  global.atob = decode;
+}
 
 const AppNavigator = createStackNavigator({
     Home: {
@@ -36,6 +43,7 @@ const AppNavigator = createStackNavigator({
 const Start=createAppContainer(AppNavigator);
 export default class App extends React.Component{
     render(){
+
           return <Start/>;
     }
 }
