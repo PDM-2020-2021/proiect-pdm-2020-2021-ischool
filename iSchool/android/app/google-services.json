@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1063961768464",
+    "firebase_url": "https://ischool-rxo-default-rtdb.firebaseio.com",
+    "project_id": "ischool-rxo",
+    "storage_bucket": "ischool-rxo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063961768464:android:c6837c9f478e3893c11095",
+        "android_client_info": {
+          "package_name": "com.ischool"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1063961768464-oevc161p8l8u1jp2cd915qj2gd0u4gmm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXJAFHhuDq0mwxS0fC_bAHlVIFSxhBj1A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1063961768464-oevc161p8l8u1jp2cd915qj2gd0u4gmm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
