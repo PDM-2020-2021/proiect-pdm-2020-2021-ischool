@@ -70,7 +70,7 @@ state={
                     prenume:''
                     };
                     }
-         onRegisterPress= (email, parola, nume,prenume,liceu,oras)=> {
+         onRegisterPress= (email, parola, nume,prenume,liceu,oras, clasa, profil)=> {
 
                            firebase
                                  .auth()
@@ -83,7 +83,9 @@ state={
                                          nume,
                                         prenume,
                                         liceu,
-                                        oras
+                                        oras,
+                                        clasa,
+                                        profil
                                      };
 
                               const usersRef= firebase.firestore().collection('users')
@@ -208,7 +210,7 @@ state={
                 </View>
                 <View>
                   <TouchableOpacity
-                    onPress={() =>  this.onRegisterPress(this.state.email, this.state.parola,this.state.nume,this.state.prenume,this.state.liceu,this.state.oras)}
+                    onPress={() =>  this.onRegisterPress(this.state.email, this.state.parola,this.state.nume,this.state.prenume,this.state.liceu,this.state.oras, this.state.clasa, this.state.profil)}
                     style ={styles.buttonSignUp}
                   >
                   <Text style={{fontSize: 20, textAlign: "center"}}>SignUp</Text>
