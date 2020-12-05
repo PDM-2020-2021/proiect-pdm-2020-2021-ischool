@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View, Button, Image, TextInput,TouchableOpacity} from 'react-native';
+import {firebase} from './firebase/config'
 
 export default class Login extends React.Component{
 static navigationOptions = {
@@ -19,6 +20,51 @@ static navigationOptions = {
                     />
         ),
     };
+    state = {
+        email: '',
+        parola: ''
+    }
+    handleEmail=(text)=>{
+        this.setState({email:text})
+    }
+
+    handleParola=(text)=>{
+        this.setState({parola:text})
+    }
+
+    onLoginPress = (email, parola) => {
+           firebase
+               .auth()
+               .signInWithEmailAndPassword(email, parola)
+               .then((response) => {
+                   const uid = response.user.uid
+                   const usersRef = firebase.firestore().collection('users')
+                   usersRef
+                       .doc(uid)
+                       .get()
+                       .then(firestoreDocument => {
+                           if (!firestoreDocument.exists) {
+                               alert("User does not exist anymore.")
+                               return;
+                           }
+                           const user = firestoreDocument.data()
+                           if(user["profil"] == 'Uman')
+                           {
+                            this.props.navigation.navigate('Uman', {user: user})
+                           }
+                           else if(user['profil'] == 'Real')
+                           {
+                            this.props.navigation.navigate('Real', {user: user})
+                           }
+                       })
+                       .catch(error => {
+                           alert(error)
+                       });
+               })
+               .catch(error => {
+                   alert(error)
+               })
+      }
     render()
     {
         return(
@@ -34,6 +80,7 @@ static navigationOptions = {
                  <Text style = {styles.text}>EMAIL</Text>
                   <TextInput
                       style={{ fontSize : 25, height: 50, borderColor: 'black', borderWidth: 2 }}
+                      onChangeText={this.handleEmail}
                   />
                </View>
               <View style = {styles.parola}>
@@ -41,13 +88,14 @@ static navigationOptions = {
                 <TextInput
                  secureTextEntry = {true}
                  style={{ fontSize : 25, height: 50, borderColor: 'black', borderWidth: 2 }}
+                 onChangeText={this.handleParola}
                  />
               </View>
 
 
               <View>
                <TouchableOpacity
-                    //onPress={() => navigation.navigate('Login')}
+                    onPress={() => this.onLoginPress(this.state.email, this.state.parola)}
                     style ={styles.buttonLogin}>
                     <Text style={{fontSize: 20, textAlign: "center"}}>Login</Text>
                 </TouchableOpacity>
