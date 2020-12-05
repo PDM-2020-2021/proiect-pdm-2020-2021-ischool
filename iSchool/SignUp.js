@@ -1,7 +1,39 @@
 import React from 'react';
 import {Picker,StyleSheet, Text, View, Button, Image, TextInput,TouchableOpacity,ScrollView } from 'react-native';
+import {firebase} from './firebase/config'
+
+
 
 export default class SignUp extends React.Component{
+
+state={
+                  email:'',
+                  parola:'',
+                  liceu:'',
+                  oras:'',
+                  nume:'',
+                  prenume:'',
+                  clasa:'',
+                  profil:''}
+     handleEmail=(text)=>{
+        this.setState({email:text})
+     }
+      handleLiceu=(text)=>{
+             this.setState({liceu:text})
+          }
+           handleParola=(text)=>{
+                  this.setState({parola:text})
+               }
+                handleNume=(text)=>{
+                       this.setState({nume:text})
+                    }
+                     handlePrenume=(text)=>{
+                            this.setState({prenume:text})
+                         }
+                          handleOras=(text)=>{
+                                 this.setState({oras:text})
+                              }
+
 
     static navigationOptions = {
             title: '',
@@ -20,15 +52,60 @@ export default class SignUp extends React.Component{
                         />
             ),
     };
-    state = {clasa: '', profil: '' }
+
         updateClass = (clasa) => {
             this.setState({ clasa: clasa })};
         updateProfil = (profil) => {
             this.setState({profil:profil})
         };
+
+        constructor(props) {
+                    super(props);
+                    this.state={
+                    email:'',
+                    parola:'',
+                    liceu:'',
+                    oras:'',
+                    nume:'',
+                    prenume:''
+                    };
+                    }
+         onRegisterPress= (email, parola, nume,prenume,liceu,oras)=> {
+
+                           firebase
+                                 .auth()
+                                 .createUserWithEmailAndPassword(email, parola)
+                                 .then((response) => {
+                                     const uid = response.user.uid
+                                     const data = {
+                                         id: uid,
+                                         email,
+                                         nume,
+                                        prenume,
+                                        liceu,
+                                        oras
+                                     };
+
+                              const usersRef= firebase.firestore().collection('users')
+                                  usersRef
+                                         .doc(uid)
+                                         .set(data)
+                                         .then(() => {
+                                             this.props.navigation.navigate('Succes', {user: data})
+                                         })
+                                         .catch((error) => {
+                                             alert(error)
+                                         });
+                                 })
+
+                                 .catch((error) => {
+                                     alert(error)
+                             });
+                         }
+
     render()
     {
-         const {navigate} = this.props.navigation;
+
         return(
         <View>
         <Image
@@ -46,18 +123,21 @@ export default class SignUp extends React.Component{
                     placeholder = 'Nume'
                     autoCapitalize = "none"
                     placeholderTextColor = 'white'
+                    onChangeText={this.handleNume}
                  />
                 <TextInput
                   style = {styles.input}
                   placeholder = 'Prenume'
                   autoCapitalize = "none"
                   placeholderTextColor = 'white'
+                  onChangeText={this.handlePrenume}
                 />
                 <TextInput
                   style = {styles.input}
                   placeholder = 'Email'
                   autoCapitalize = "none"
                   placeholderTextColor = 'white'
+                  onChangeText={this.handleEmail}
                 />
                 <TextInput
                   style = {styles.input}
@@ -65,6 +145,7 @@ export default class SignUp extends React.Component{
                   secureTextEntry = {true}
                   autoCapitalize = "none"
                   placeholderTextColor = 'white'
+                  onChangeText={this.handleParola}
                 />
                 </View>
                 <View style = {styles.clasa}>
@@ -94,6 +175,7 @@ export default class SignUp extends React.Component{
                     placeholder = 'Liceu'
                     autoCapitalize = "none"
                     placeholderTextColor = 'white'
+                    onChangeText={this.handleLiceu}
                     />
                 </View>
                 <View style = {styles.clasa}>
@@ -121,11 +203,12 @@ export default class SignUp extends React.Component{
                   placeholder = 'Oras'
                   autoCapitalize = "none"
                   placeholderTextColor = 'white'
+                  onChangeText={this.handleOras}
                  />
                 </View>
                 <View>
                   <TouchableOpacity
-                    onPress={() => navigate('Succes')}
+                    onPress={() =>  this.onRegisterPress(this.state.email, this.state.parola,this.state.nume,this.state.prenume,this.state.liceu,this.state.oras)}
                     style ={styles.buttonSignUp}
                   >
                   <Text style={{fontSize: 20, textAlign: "center"}}>SignUp</Text>
