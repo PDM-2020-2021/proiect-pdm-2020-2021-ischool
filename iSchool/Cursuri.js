@@ -5,7 +5,7 @@ import { Dimensions } from 'react-native';
 const dimensions = Dimensions.get('window');
 const imageHeight = dimensions.height;
 const imageWidth = dimensions.width;
-export default class Real extends React.Component{
+export default class Uman extends React.Component{
     static navigationOptions = {
         title: '',
         headerTintColor: '#fff',
@@ -22,15 +22,17 @@ export default class Real extends React.Component{
                                }}
                     />
         ),
+
     };
     render()
     {
-        const {navigate} = this.props.navigation;
-        const user=this.props.navigation.state.params.user
+    const {navigate} = this.props.navigation;
+    const user=this.props.navigation.state.params.user
+    const materia=this.props.navigation.state.params.materia
         return(
             <View style={styles.real}>
              <Image
-                         source={require('./images/math.jpg')}
+                         source={require('./images/uman.jpg')}
                           style={{ height: imageHeight, width: imageWidth,resizeMode:'cover',position:'absolute' }}
 
                         />
@@ -39,21 +41,36 @@ export default class Real extends React.Component{
                 </View>
               <View style={styles.button}>
               <TouchableOpacity
-                onPress={() => navigate('Cursuri',{user:user,materia:"Matematica"})}
+                onPress={() => navigate('AfisareCurs',{user:user,curs:"Curs1",materia:materia})}
                 style={styles.button1}
               >
-              <Text style={styles.text}>Matematică</Text>
+              <Text style={styles.text}>Cursul 1</Text>
               </TouchableOpacity>
 
-              <View style={styles.buttonInfo}>
                             <TouchableOpacity
                               style={styles.button1}
-                              onPress={() => navigate('Cursuri',{user:user,materia:"Informatica"})}
-
+                              onPress={() => navigate('AfisareCurs',{user:user,curs:"Curs2",materia:materia})}
                             >
-                            <Text style={styles.text}>Informatică</Text>
+                            <Text style={styles.text}>Cursul 2</Text>
                             </TouchableOpacity>
-                            </View>
+                            <TouchableOpacity
+                                     style={styles.button1}
+                                     onPress={() => navigate('AfisareCurs',{user:user,curs:"Curs3",materia:materia})}
+                              >
+                             <Text style={styles.text}>Cursul 3</Text>
+                             </TouchableOpacity>
+                             <TouchableOpacity
+                             style={styles.button1}
+                             onPress={() => navigate('AfisareCurs',{user:user,curs:"Curs4",materia:materia})}
+                               >
+                              <Text style={styles.text}>Cursul 4</Text>
+                             </TouchableOpacity>
+                             <TouchableOpacity
+                               style={styles.button1}
+                               onPress={() => navigate('AfisareCurs',{user:user,curs:"Curs5",materia:materia})}
+                               >
+                                <Text style={styles.text}>Cursul 5</Text>
+                                 </TouchableOpacity>
             </View>
             </View>
 
@@ -81,7 +98,7 @@ const styles = StyleSheet.create({
                                },
                   top: {
 
-                     marginTop:140,
+                     marginTop:100,
                       marginLeft:50,
                      marginRight:50,
 
@@ -101,7 +118,7 @@ const styles = StyleSheet.create({
     text1:{
             fontWeight :"bold",
             textAlign:"center",
-            fontSize: 30,
+            fontSize: 50,
             color: 'black',
         },
     });

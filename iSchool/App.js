@@ -9,7 +9,9 @@ import Login from './Login';
 import Real from './Real';
 import Uman from './Uman';
 import Succes from './Succes';
-import {decode, encode} from'base-64';
+import Cursuri from './Cursuri';
+import AfisareCurs from './AfisareCurs';
+import {decode, encode} from 'base-64';
 if (!global.btoa) {
   global.btoa = encode;
 }
@@ -35,7 +37,12 @@ const AppNavigator = createStackNavigator({
     },
     Succes: {
         screen: Succes
-    }},
+    },
+    Cursuri:{
+        screen:Cursuri},
+        AfisareCurs:{
+        screen:AfisareCurs}
+        },
     {
     initialRouteName: 'Home',
     }

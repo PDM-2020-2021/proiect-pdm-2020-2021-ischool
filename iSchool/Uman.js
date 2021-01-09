@@ -22,9 +22,13 @@ export default class Uman extends React.Component{
                                }}
                     />
         ),
+
     };
+
     render()
-    {
+    {    const {navigate} = this.props.navigation;
+    const user=this.props.navigation.state.params.user
+
         return(
             <View style={styles.real}>
              <Image
@@ -33,11 +37,11 @@ export default class Uman extends React.Component{
 
                         />
               <View style={styles.top}>
-              <Text style={styles.text1}>Alege cursul</Text>
+              <Text style={styles.text1}>Alege disciplina</Text>
                 </View>
               <View style={styles.button}>
               <TouchableOpacity
-
+                onPress={() => navigate('Cursuri',{user:user,materia:"Romana"})}
                 style={styles.button1}
               >
               <Text style={styles.text}>Limba Română</Text>
@@ -45,6 +49,7 @@ export default class Uman extends React.Component{
 
               <View style={styles.buttonInfo}>
                             <TouchableOpacity
+                            onPress={() => navigate('Cursuri',{user:user,materia:"Istorie"})}
                               style={styles.button1}
                             >
                             <Text style={styles.text}>Istorie</Text>

@@ -164,10 +164,10 @@ state={
                  }}
                 selectedValue = {this.state.clasa} onValueChange = {this.updateClass}
                 >
-                 <Picker.Item label = "a IX-a" value = " a IX-a"/>
-                 <Picker.Item label = "a X-a" value = "a X-a"/>
-                 <Picker.Item label = "a XI-a" value = "a XI-a"/>
-                 <Picker.Item label = "a XII-a" value = "a XII-a"/>
+                 <Picker.Item label = "a IX-a" value = "aIXa"/>
+                 <Picker.Item label = "a X-a" value = "aXa"/>
+                 <Picker.Item label = "a XI-a" value = "aXIa"/>
+                 <Picker.Item label = "a XII-a" value = "aXIIa"/>
                 </Picker>
                 </View>
 
