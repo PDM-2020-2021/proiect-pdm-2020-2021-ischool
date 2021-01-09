@@ -13,8 +13,8 @@ state={
                   oras:'',
                   nume:'',
                   prenume:'',
-                  clasa:'',
-                  profil:''}
+                  clasa:'a IX-a',
+                  profil:'Real'}
      handleEmail=(text)=>{
         this.setState({email:text})
      }
@@ -67,7 +67,9 @@ state={
                     liceu:'',
                     oras:'',
                     nume:'',
-                    prenume:''
+                    prenume:'',
+                    clasa:'a IX-a',
+                    profil:'Real'
                     };
                     }
          onRegisterPress= (email, parola, nume,prenume,liceu,oras, clasa, profil)=> {
