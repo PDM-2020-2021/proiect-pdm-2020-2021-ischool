@@ -1,17 +1,26 @@
 import React from 'react';
 import {StyleSheet, Text, View, Button, Image,TouchableOpacity} from 'react-native';
 import { Dimensions } from 'react-native';
+import {firebase} from './firebase/config'
 
 const dimensions = Dimensions.get('window');
 const imageHeight = dimensions.height;
 const imageWidth = dimensions.width;
 export default class Uman extends React.Component{
-    static navigationOptions = {
+    static navigationOptions = ({navigation}) =>( {
         title: '',
         headerTintColor: '#fff',
         headerTitleStyle: {
         fontWeight: 'bold',
         },
+        headerRight: () => (
+                                    <TouchableOpacity
+                                      onPress={() => {navigation.navigate('Home'); firebase.auth().signOut().then(()=>console.log('User signed out'));}}
+                                      style = {{backgroundColor:"#1498D5", margin: 10, padding: 10, borderRadius:10, fontSize: 16}}>
+                                     <Text>Logout</Text>
+                                    </TouchableOpacity>
+                         )
+        ,
         headerLeft: () => (
                     <Image
                      source = {require('./images/logo.png')}
@@ -23,7 +32,7 @@ export default class Uman extends React.Component{
                     />
         ),
 
-    };
+ });
 
     render()
     {    const {navigate} = this.props.navigation;
