@@ -25,7 +25,7 @@ state={
                   this.setState({parola:text})
                }
                 handleNume=(text)=>{
-                       this.setState({nume:text})
+                        this.setState({nume:text})
                     }
                      handlePrenume=(text)=>{
                             this.setState({prenume:text})
@@ -68,11 +68,31 @@ state={
                     oras:'',
                     nume:'',
                     prenume:'',
-                    clasa:'a IX-a',
+                    clasa:'aIXa',
                     profil:'Real'
                     };
                     }
          onRegisterPress= (email, parola, nume,prenume,liceu,oras, clasa, profil)=> {
+         var x=/^([a-zA-Z]+(_|-| )+[a-zA-Z])*[a-zA-Z]+$/
+                            if(email == '')
+                            {
+                                alert("Introduceti email!")
+                            }
+                            if(parola == '')
+                            {
+                                alert("Introduceti parola!")
+                            }
+                            if(!x.test(nume) || nume=='')
+                            {
+                                alert("Nume incorect!")
+                             }
+                             if(!x.test(prenume) || prenume=='')
+                               {
+                                 alert("Prenume incorect!")
+                                }
+                            if(email != '' && parola != '' && prenume!='' && nume!='' && x.test(prenume) && x.test(nume) )
+                            {
+
 
                            firebase
                                  .auth()
@@ -106,7 +126,7 @@ state={
                                      alert(error)
                              });
                          }
-
+}
     render()
     {
 
